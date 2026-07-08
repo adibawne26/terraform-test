@@ -18,7 +18,7 @@ app.post("/submit", async (req, res) => {
     try {
 
         const response = await axios.post(
-            "http://40.192.24.94:5000/process",
+            "http://18.61.15.126:5000/process",
             req.body
         );
 
