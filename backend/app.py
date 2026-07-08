@@ -6,7 +6,7 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return "Flask Backend is Running!"
+    return "Flask Backend is Running! - by aditya"
 
 @app.route("/process", methods=["POST"])
 def process():
