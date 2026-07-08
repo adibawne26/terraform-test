@@ -1,0 +1,14 @@
+Screenshots/
+frontend/node_modules/
+backend/venv/
+.terraform/
+.terraform.lock.hcl
+devops-adi.pem
+main.tf
+outputs.tf
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+user-data.sh
+variables.tf
+provider.tf

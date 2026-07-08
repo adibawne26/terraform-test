@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Assignment</title>
+</head>
+<body>
+
+<h2>To-Do Form</h2>
+
+<form id="todoForm">
+
+    <input type="text" id="name" placeholder="Item Name"><br><br>
+
+    <input type="text" id="description" placeholder="Item Description"><br><br>
+
+    <input type="text" id="id" placeholder="Item ID"><br><br>
+
+    <input type="text" id="uuid" placeholder="Item UUID"><br><br>
+
+    <input type="text" id="hash" placeholder="Item Hash"><br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<pre id="result"></pre>
+
+<script>
+
+document.getElementById("todoForm").addEventListener("submit", async(e)=>{
+
+    e.preventDefault();
+
+    const response = await fetch("/submit",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            name:document.getElementById("name").value,
+
+            description:document.getElementById("description").value,
+
+            id:document.getElementById("id").value,
+
+            uuid:document.getElementById("uuid").value,
+
+            hash:document.getElementById("hash").value
+
+        })
+
+    });
+
+    const data = await response.json();
+
+    document.getElementById("result").innerHTML =
+    JSON.stringify(data,null,4);
+
+});
+
+</script>
+
+</body>
+</html>
