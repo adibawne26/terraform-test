@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Deploy Express') {
+            steps {
+                sshagent(credentials: ['ec2-ssh']) {
+
+                    sh '''
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.14.151 <<EOF
+cd ~/terraform-test/frontend
+
+git fetch origin
+git reset --hard origin/master
+
+npm install
+
+pm2 restart express-frontend
+EOF
+'''
+                }
+            }
+        }
+
+    }
+}

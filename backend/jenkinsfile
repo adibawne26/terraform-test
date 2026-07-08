@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Deploy Flask') {
+            steps {
+                sshagent(credentials: ['ec2-ssh']) {
+
+                    sh '''
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.14.151 <<EOF
+cd ~/terraform-test/backend
+
+git fetch origin
+git reset --hard origin/master
+
+source venv/bin/activate
+pip install -r requirements.txt
+
+pm2 restart flask-backend
+EOF
+'''
+                }
+            }
+        }
+
+    }
+}
